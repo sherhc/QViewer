@@ -1,0 +1,2 @@
+rootProject.name = "QViewer"
+include ':app'
