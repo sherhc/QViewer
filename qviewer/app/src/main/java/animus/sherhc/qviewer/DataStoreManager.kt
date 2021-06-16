@@ -13,22 +13,22 @@ import java.io.IOException
 private val Context.dataStore by preferencesDataStore("settings")
 
 class DataStoreManager(appContext: Context) {
-    private val dataStore = appContext.dataStore
+	private val dataStore = appContext.dataStore
 
-    suspend fun setLastSite(index: Int) {
-        dataStore.edit { pref ->
-            pref[intPreferencesKey("lastSite")] = index
-        }
-    }
+	suspend fun setLastSite(index: Int) {
+		dataStore.edit { pref ->
+			pref[intPreferencesKey("lastSite")] = index
+		}
+	}
 
-    val lastSite: Flow<Int?> = dataStore.data
-        .catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
-        }.map { preferences ->
-            preferences[intPreferencesKey("lastSite")]
-        }
+	val lastSite: Flow<Int?> = dataStore.data
+		.catch { exception ->
+			if (exception is IOException) {
+				emit(emptyPreferences())
+			} else {
+				throw exception
+			}
+		}.map { preferences ->
+			preferences[intPreferencesKey("lastSite")]
+		}
 }

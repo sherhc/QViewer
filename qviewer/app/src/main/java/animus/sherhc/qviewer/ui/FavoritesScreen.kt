@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.emptyFlow
 
 @Composable
 fun FavoritesScreen(items: Flow<PagingData<String>> = emptyFlow()) {
-    val lazyPagingItems = items.collectAsLazyPagingItems()
-    LazyColumn {
-        items(lazyPagingItems) {
-            Text(text = "123")
-        }
-    }
+	val lazyPagingItems = items.collectAsLazyPagingItems()
+	LazyColumn {
+		items(lazyPagingItems) {
+			Text(text = "123")
+		}
+	}
 }

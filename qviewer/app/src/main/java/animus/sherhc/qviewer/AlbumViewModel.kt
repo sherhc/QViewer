@@ -10,18 +10,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AlbumViewModel @Inject constructor(
-    private val repository: AlbumRepository,
-    private val dataStore: DataStoreManager
+	private val repository: AlbumRepository,
+	private val dataStore: DataStoreManager,
 ) : ViewModel() {
-    fun getAlbum(id: Int) = repository.getAlbum(id).cachedIn(viewModelScope)
-    suspend fun getTitle(id: Int) = repository.getTitle(id)
+	fun getAlbum(id: Int) = repository.getAlbum(id).cachedIn(viewModelScope)
 
-    val urlFlow = dataStore.lastSite
+	val urlFlow = dataStore.lastSite
 
-    fun setUrl(index: Int) {
-        viewModelScope.launch {
-            dataStore.setLastSite(index)
-        }
-    }
-
+	fun setUrl(index: Int) {
+		viewModelScope.launch {
+			dataStore.setLastSite(index)
+		}
+	}
 }
